@@ -10,25 +10,27 @@ There are many benefits to modular code:
 3. Modules encourage loose coupling and reduces the risk of dependency issues. In the case of a dependency issue, the problem should be immediately obvious.
 
 4. Modules reduce the risk of name collisions. For example, if there were two modules with a function called add - we would actually reference the add function by calling moduleOne.add() and moduleTwo.add():
-```
-// Module One
+    ```
+    // Module One
 
-export function add () {
-    console.log('Add function from Module One')
-}
-```
-```
-Module Two 
+    export function add () {
+        console.log('Add function from Module One')
+    }
+    ```
+    ```
+    Module Two 
 
-export function add () {
-    console.log('Add function from Module Two')
-}
-```
+    export function add () {
+        console.log('Add function from Module Two')
+    }
+    ```
 
-```
-import * as ModuleOne from 'ModuleOne';
-import * as ModuleTwo from 'ModuleTwo';
+    ```
+    import * as ModuleOne from 'ModuleOne';
+    import * as ModuleTwo from 'ModuleTwo';
 
-ModuleOne.add()     // prints 'Add function from Module One'
-ModuleTwo.add()     // 'Add function from Module Two'
-```
+    ModuleOne.add()     // prints 'Add function from Module One'
+    ModuleTwo.add()     // 'Add function from Module Two'
+    ```
+
+5. Code organization! Keeping unrelated code in separate buckets will inevitablely help with productivity efficiency.
