@@ -211,7 +211,37 @@ Once you've written a module that you want to export, ES6 mainly supports two me
         ```
         This means that the variables _arrAlias_ and _arrObj_ don't hold a copy of the value - they merely hold a reference to where that value lies in memory. This means that when the original object is mutated, the 'values' in _arrAlias_ and _arrObj_ are mutated as well.
 
-## Singletons
+## Tree shaking
+The concept is quite aptly named. When someone shakes a tree, all of the dried and dead leaves will fall to the ground, leaving the healthy and usable leaves. When large numbers of modules are imported and exported in Javascript, there will inevitably be parts of modules that are included in exports but aren't used. These parts will not be included in the final bundle after the build command is run.
+
+```
+// my-module.js:
+
+export myFunc = () => {
+    console.log("Hello world.")
+}
+
+export tempFunc = () => {
+    console.log("Today is 27 degrees, yikes.")
+}
+
+export sweatyFunc = () => {
+    console.log("Ya boy is sweaty today!")
+}
+
+```
+
+```
+// main.js:
+
+import { myFunc, tempFunc } from 'my-module'
+
+myFunc();
+tempFunc();
+
+```
+
+Here, because sweatyFunc() was never used, once the build command runs, the code will not be included in the final bundle.
 
 ## Additional Resources:
 Interesting reads related to modules and modular thinking in Javascript:
@@ -223,3 +253,5 @@ Interesting reads related to modules and modular thinking in Javascript:
     - [ES6 Destructing Objects and Arrays](https://ponyfoo.com/articles/es6-destructuring-in-depth)
     - [Understanding Binding vs Referencing in JS](https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0)
 
+- Singletons - a way to ensure that only one "copy" of an imported module exists at a time
+    - [What is a singleton and why is it used?](https://www.sitepoint.com/javascript-design-patterns-singleton/)
