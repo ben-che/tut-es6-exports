@@ -243,6 +243,20 @@ tempFunc();
 
 Here, because sweatyFunc() was never used, once the build command runs, the code will not be included in the final bundle.
 
+## Bundles (and Bundlers)
+For all the talk of modules and exports, there hasn't been much focus on bundles. In Javscript, a bundler is a tool that grabs all dependencies and code and puts it into one Javascript file. This is especially helpful when we create a number of different modules. Bundlers solve several problems, with the most common being: 
+
+1. Every time we import something in a script tag, there is a high likelihood we create a global variable - something we want to avoid due to memory and collision issues.
+2. The order in which the script tags are placed matters - if the module in the first script tag has dependencies found in the module within the fifth script tag, your browser will complain and throw errors.
+3. Imagine scaling your website to the size of Amazon - you would need hundreds of script tags at the bottom of the page to account for all of the new modules, and you would have to manually remove individual script tags once the module becomes obsolete. This is not scalable nor is it maintainable.
+
+Common bundlers that solve these problems include:
+- [Webpack](https://webpack.js.org/)
+- [Browerify](http://browserify.org/)
+- [Rollup](https://rollupjs.org/guide/en)
+
+
+
 ## Additional Resources:
 Interesting reads related to modules and modular thinking in Javascript:
 
