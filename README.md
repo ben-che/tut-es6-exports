@@ -34,3 +34,42 @@ There are many benefits to modular code:
     ```
 
 5. Code organization! Keeping unrelated code in separate buckets will inevitablely help with productivity efficiency.
+
+## Exporting and Importing Modules
+Once you've written a module that you want to export, ES6 mainly supports two methods - default exporting and named exporting.
+
+### Default Exports
+- Only one _export default_ statement can exist in a module
+- Default exports don't have to be named - meaning the developer who later imports them can assign a name to the export
+- Default exports have different syntax for different values:
+    ```
+    // exporting a function:
+
+    export default function() {
+        console.log("Exporting a function")
+    }
+
+    export default () => {
+        console.log("Exporting an arrow function")
+    }
+    ```
+    ```
+    // exporting a class:
+    
+    export default class {
+        key : value
+    }
+    ```
+
+- When you import these modules, you cna actually assign a name to them:
+
+    ```
+    // ModuleOne.js
+
+    let n;
+    export default n = 10;
+    ```
+    ```
+    import customName from 'ModuleOne.js'
+    console.log(customName) // logs 10 to the console
+    ```
