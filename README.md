@@ -7,9 +7,11 @@ There are many benefits to modular code:
 
 2. Modules can be reused over and over and can be brought in across many applications.
 
-3. Modules encourage loose coupling and reduces the risk of dependency issues. In the case of a dependency issue, the problem should be immediately obvious.
+3. Conversely, modules can be taken out of projects very quickly as well.
 
-4. Modules reduce the risk of name collisions. For example, if there were two modules with a function called add - we would actually reference the add function by calling moduleOne.add() and moduleTwo.add():
+4. Modules encourage loose coupling and reduces the risk of dependency issues. In the case of a dependency issue, the problem should be immediately obvious.
+
+5. Modules reduce the risk of name collisions. For example, if there were two modules with a function called add - we would actually reference the add function by calling moduleOne.add() and moduleTwo.add():
     ```
     // Module One
 
@@ -33,7 +35,7 @@ There are many benefits to modular code:
     ModuleTwo.add()     // 'Add function from Module Two'
     ```
 
-5. Code organization! Keeping unrelated code in separate buckets will inevitablely help with productivity efficiency.
+6. Code organization! Keeping unrelated code in separate buckets will inevitablely help with productivity efficiency.
 
 ## Exporting and Importing Modules
 Once you've written a module that you want to export, ES6 mainly supports two methods - default exporting and named exporting.
