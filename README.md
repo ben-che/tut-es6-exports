@@ -120,11 +120,92 @@ Once you've written a module that you want to export, ES6 mainly supports two me
 
     ```
 
-### Destructuring
+## Destructuring
+- Destructuring in ES6 allows us to bind properties from Arrays and Objects to any number of different variables:
+
+    ```
+    // creating an object:
+
+    let myObj = {
+        a : 1,
+        b : 2
+    }
+
+    // destructuring the object:
+
+    let { a, b } = myObj;
+
+    console.log(a);     // will print 1 to the console
+    console.log(b);     // will print 2 to the console
+
+    ```
+- There are several things to note, however:
+
+    1. If we pull __primitives__ out of an Array or Object, this creates a __binding__. This means that if the original Array or Object is mutated, the newly created variable will not be changed:
+
+        ```
+        // creating an object:
+
+            let myObj = {
+                stringPrim: "foo"
+            }
+
+        // mapping the primitive to an alias:
+
+            let { stringPrim : stringAlias } = myObj;
+        
+        // mutating the original object:
+
+            myObj.stringPrim = "bar";
+
+        // console logs:
+
+            console.log(myObj.stringPrim) // will print "bar"
+            console.log(stringAlias)      // will print "foo"
+        ```
+        This happens because when we work with primitives in Javascript, we create an actual copy of the primitive and store it in a separate part in memory, as opposed to creating a pointer to the address in memory where the primitive is stored.
+
+    2. However, if we pull an Object (or Array) out, Javascript creates a reference instead:
+        ```
+
+        // creating an object:
+
+            let myObjTwo = {
+                nestedArr : [1, 2, 3],
+                nestedObj : {
+                    name: "Ben",
+                    pets: 1
+                }
+            }
+
+        // mapping the nested objects to different aliases:
+
+            let { nestedArr : arrAlias, nestedObj : arrObj } = myObjTwo;
+
+        // mutating the original object:
+
+            myObjTwo.nestedArr.push(4);
+            myObjTwo.nestedObj.name = "Bill"
+            myObjTwo.nestedObj.pets = false
+
+        // console logs:
+
+            console.log(myObjTwo.nestedArr) // will print [1, 2, 3, 4];
+            cosole.log(arrAlias)            // also will print [1, 2, 3, 4]
+
+            console.log(nestedObj)          // will print { name:"Bill", pets: false}
+            console.log(objAlias)           // will also print { name:"Bill", pets: false}
+
+        ```
+        This means that the variables _arrAlias_ and _arrObj_ don't hold a copy of the value - they merely hold a reference to where that value lies in memory. This means that when the original object is mutated, the 'values' in _arrAlias_ and _arrObj_ are mutated as well.
 
 ## Additional Resources:
 Interesting reads related to modules and modular thinking in Javascript:
 
 - When using Node, why do I use _const myVar = require('myModule')_ instead of just using import all the time?
     -  [Modules from an ES6, CommonJS and Asyncronous Modular Definition (AMD) viewpoint](https://auth0.com/blog/javascript-module-systems-showdown/)
+
+- A more low level understanding of destructuring in JS:
+    - [ES6 Destructing Objects and Arrays](https://ponyfoo.com/articles/es6-destructuring-in-depth)
+    - [Understanding Binding vs Referencing in JS](https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0)
 
