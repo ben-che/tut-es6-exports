@@ -129,7 +129,7 @@ Once you've written a module that you want to export, ES6 mainly supports two me
     let myObj = {
         a : 1,
         b : 2
-    }
+    };
 
     // destructuring the object:
 
@@ -139,6 +139,18 @@ Once you've written a module that you want to export, ES6 mainly supports two me
     console.log(b);     // will print 2 to the console
 
     ```
+    We can even further assign an alias to the value we pull out by using the following syntax:
+
+    ```
+    let myObjAgain = {
+        myString : "Hello!"
+    };
+
+    let { myString : stringAlias } = myObjAgain;
+
+    console.log("stringAlias");     // will print "Hello!" to the console
+    ```
+
 - There are several things to note, however:
 
     1. If we pull __primitives__ out of an Array or Object, this creates a __binding__. This means that if the original Array or Object is mutated, the newly created variable will not be changed:
@@ -148,7 +160,7 @@ Once you've written a module that you want to export, ES6 mainly supports two me
 
             let myObj = {
                 stringPrim: "foo"
-            }
+            };
 
         // mapping the primitive to an alias:
 
@@ -165,7 +177,7 @@ Once you've written a module that you want to export, ES6 mainly supports two me
         ```
         This happens because when we work with primitives in Javascript, we create an actual copy of the primitive and store it in a separate part in memory, as opposed to creating a pointer to the address in memory where the primitive is stored.
 
-    2. However, if we pull an Object (or Array) out, Javascript creates a reference instead:
+    2. However, if we pull an Object (or Array) out, Javascript creates a _reference_ instead:
         ```
 
         // creating an object:
@@ -185,19 +197,21 @@ Once you've written a module that you want to export, ES6 mainly supports two me
         // mutating the original object:
 
             myObjTwo.nestedArr.push(4);
-            myObjTwo.nestedObj.name = "Bill"
-            myObjTwo.nestedObj.pets = false
+            myObjTwo.nestedObj.name = "Bill";
+            myObjTwo.nestedObj.pets = false;
 
         // console logs:
 
-            console.log(myObjTwo.nestedArr) // will print [1, 2, 3, 4];
-            cosole.log(arrAlias)            // also will print [1, 2, 3, 4]
+            console.log(myObjTwo.nestedArr);  // will print [1, 2, 3, 4];
+            console.log(arrAlias);            // also will print [1, 2, 3, 4]
 
-            console.log(nestedObj)          // will print { name:"Bill", pets: false}
-            console.log(objAlias)           // will also print { name:"Bill", pets: false}
+            console.log(nestedObj);           // will print { name:"Bill", pets: false}
+            console.log(objAlias);            // will also print { name:"Bill", pets: false}
 
         ```
         This means that the variables _arrAlias_ and _arrObj_ don't hold a copy of the value - they merely hold a reference to where that value lies in memory. This means that when the original object is mutated, the 'values' in _arrAlias_ and _arrObj_ are mutated as well.
+
+## Singletons
 
 ## Additional Resources:
 Interesting reads related to modules and modular thinking in Javascript:
