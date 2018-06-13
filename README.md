@@ -73,3 +73,49 @@ Once you've written a module that you want to export, ES6 mainly supports two me
     import customName from 'ModuleOne.js'
     console.log(customName) // logs 10 to the console
     ```
+
+### Named Exports
+- Unlike default exports, multiple named exports can exist within one module
+- As the name suggests, the item being exported has to have a name
+
+    ```
+    // named-exports-module.js
+
+    // exporting a function:
+
+    printMe = () => {
+        console.log("I'm a fancy function");
+    }
+
+    export { printMe };
+
+    ############################################################
+    ############################################################
+
+    // exporting a constant
+
+    export const message = "Alas I am but a simple string.";
+
+    ############################################################
+    ############################################################
+
+    // Alternatively, we can export multiple items in one line:
+
+    printMeTwo = () => {
+        console.log("I'm still a fancy function");
+    }
+
+    const messageTwo = "Alas I am still a simple string.";
+    
+    export { printMeTwo, messageTwo };
+
+    ```
+- And to import them, we use a similar syntax:
+
+    ```
+    import { printMeTwo, messageTwo } from 'named-exports-module';
+
+    printMeTwo();
+    console.log(messageTwo);
+
+    ```
