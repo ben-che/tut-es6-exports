@@ -119,3 +119,12 @@ Once you've written a module that you want to export, ES6 mainly supports two me
     console.log(messageTwo);
 
     ```
+
+### Destructuring
+
+## Additional Resources:
+Interesting reads related to modules and modular thinking in Javascript:
+
+- When using Node, why do I use _const myVar = require('myModule')_ instead of just using import all the time?
+    -  [Modules from an ES6, CommonJS and Asyncronous Modular Definition (AMD) viewpoint](https://auth0.com/blog/javascript-module-systems-showdown/)
+
